@@ -1,8 +1,6 @@
 
 package com.product.api.dto;
 
-import org.springframework.http.HttpStatus;
-
 /**
  * Implementación de la clase ApiResponse
  * @author Vargas Bravo Paola

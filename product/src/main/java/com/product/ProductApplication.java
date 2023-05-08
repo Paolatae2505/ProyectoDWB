@@ -2,7 +2,7 @@ package com.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * Implementación de la clase ProductApplication
@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @version 1.0 (17 Febrero 2023)
  * @since DWB (2023-2)
  */
+@EnableEurekaClient
 @SpringBootApplication
 public class ProductApplication {
 
