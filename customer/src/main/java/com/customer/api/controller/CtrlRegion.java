@@ -34,7 +34,7 @@ public class CtrlRegion {
 		region2.setRegion("Sur");
 		region2.setStatus(1);
 		
-		List regions = new ArrayList();
+		List<Region> regions = new ArrayList<>();
 		regions.add(region1);
 		regions.add(region2);
 		
