@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.invoice.api.dto.DtoProduct;
 
 @Entity
 @Table(name = "cart")
@@ -82,5 +83,23 @@ public class Cart {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+	
+	public Item toItem(Double taxPercentage, DtoProduct product){
+		Item item = new Item();
+		item.setGtin(this.getGtin());
+		item.setQuantity(this.getQuantity());
+		
+		item.setStatus(1);
+		
+		Double unitPrice = product.getPrice();
+		item.setUnit_price(unitPrice);
+		
+		Double total = this.getQuantity() * unitPrice;
+		Double taxes = total * taxPercentage;
+		item.setSubtotal(total - taxes);
+		item.setTotal(total);
+		item.setTaxes(taxes);
+		return item;
 	}
 }

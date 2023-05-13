@@ -1,4 +1,4 @@
-package com.invoice.configuration.client;
+package com.invoice.config.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
