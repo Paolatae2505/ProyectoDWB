@@ -26,4 +26,7 @@ public interface RepoCart extends JpaRepository<Cart, Integer>{
 	@Transactional
 	@Query(value ="UPDATE cart SET status = 0 WHERE rfc = :rfc AND status = 1", nativeQuery = true)
 	Integer clearCart(@Param("rfc") String rfc);
+	
+	@Query(value = "SELECT * FROM cart WHERE gtin = :gtin AND rfc = :rfc", nativeQuery = true)
+	Cart findByGtinAndRfc(@Param("gtin") String gtin, @Param("rfc") String rfc);
 }

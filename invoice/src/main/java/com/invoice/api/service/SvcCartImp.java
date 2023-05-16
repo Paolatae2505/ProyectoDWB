@@ -55,6 +55,22 @@ public class SvcCartImp implements SvcCart {
 		 * Validar si el producto ya había sido agregado al carrito para solo actualizar su cantidad
 		 */
 		
+		Cart savedCart = repo.findByGtinAndRfc(cart.getGtin(), cart.getRfc());
+		if (savedCart != null) {
+			int nQuantity = cart.getQuantity() + savedCart.getQuantity();
+			savedCart.setQuantity(nQuantity);
+
+			if (nQuantity > productStock || nQuantity <= 0) {
+				throw new ApiException(HttpStatus.BAD_REQUEST, "invalid quantity");
+			}
+			repo.save(savedCart);
+			return new ApiResponse("quantity updated");
+		}
+
+		if (cart.getQuantity() < 1) {
+			throw new ApiException(HttpStatus.BAD_REQUEST, "invalid quantity");
+		}
+
 		cart.setStatus(1);
 		repo.save(cart);
 		return new ApiResponse("item added");
