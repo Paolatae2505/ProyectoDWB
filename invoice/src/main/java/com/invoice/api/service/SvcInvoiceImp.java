@@ -56,16 +56,18 @@ public class SvcInvoiceImp implements SvcInvoice {
 		if(cartItems.isEmpty()){
 			throw new ApiException(HttpStatus.NOT_FOUND, "the cart has no items");
 		}
-		
-		
+			
 		Map<Cart, DtoProduct> data = new HashMap<>();
 		for (Cart cart : cartItems) {
-			
 			data.put(cart, getDtoProduct(cart));
 		}
+
+		repoCart.clearCart(rfc);
 		
 		return new ApiResponse("invoice generated");
 	}
+
+	
 	
 	private DtoProduct getDtoProduct(Cart cart){
 		try{
