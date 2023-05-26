@@ -106,14 +106,16 @@ public class SvcProductImp implements SvcProduct {
 	}
 
 	@Override
-	public ApiResponse updateProductStock(String gtin, Integer stock) {
-		Product product = getProduct(gtin);
-		if(stock > product.getStock())
-			throw new ApiException(HttpStatus.BAD_REQUEST, "stock to update is invalid");
-		
-		repo.updateProductStock(gtin, product.getStock() - stock);
-		return new ApiResponse("product stock updated");
-	}
+public ApiResponse updateProductStock(String gtin, Integer stock) {
+    Product product = getProduct(gtin);
+    if (stock > product.getStock()) {
+        throw new ApiException(HttpStatus.BAD_REQUEST, "stock to update is invalid");
+    }
+
+    repo.updateProductStock(gtin, stock);
+    return new ApiResponse("product stock updated");
+}
+
 	
 	@Override
 	public ApiResponse updateProductCategory(Category category, String gtin) {

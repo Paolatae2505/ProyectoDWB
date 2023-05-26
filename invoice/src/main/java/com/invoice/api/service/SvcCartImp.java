@@ -47,7 +47,7 @@ public class SvcCartImp implements SvcCart {
 		DtoProduct product = getProduct(cart.getGtin());
 		Integer productStock = product.getStock();
 		
-		if(cart.getQuantity() > productStock|| cart.getQuantity() < 1 ) {
+		if(cart.getQuantity() > productStock) {
 			throw new ApiException(HttpStatus.BAD_REQUEST, "invalid quantity");
 		}
 		
@@ -64,6 +64,7 @@ public class SvcCartImp implements SvcCart {
 			if (nQuantity > productStock || nQuantity <= 0) {
 				throw new ApiException(HttpStatus.BAD_REQUEST, "invalid quantity");
 			}
+			productClt.updateProductStock(cart.getGtin(), productStock - cart.getQuantity());
 			repo.save(savedCart);
 			return new ApiResponse("quantity updated");
 		}
@@ -71,7 +72,7 @@ public class SvcCartImp implements SvcCart {
 		if (cart.getQuantity() < 1) {
 			throw new ApiException(HttpStatus.BAD_REQUEST, "invalid quantity");
 		}
-
+		productClt.updateProductStock(cart.getGtin(), productStock - cart.getQuantity());
 		cart.setStatus(1);
 		repo.save(cart);
 		return new ApiResponse("item added");
