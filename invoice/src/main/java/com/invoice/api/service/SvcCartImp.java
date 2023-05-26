@@ -47,7 +47,7 @@ public class SvcCartImp implements SvcCart {
 		DtoProduct product = getProduct(cart.getGtin());
 		Integer productStock = product.getStock();
 		
-		if(cart.getQuantity() > productStock) {
+		if(cart.getQuantity() > productStock|| cart.getQuantity() < 1 ) {
 			throw new ApiException(HttpStatus.BAD_REQUEST, "invalid quantity");
 		}
 		
