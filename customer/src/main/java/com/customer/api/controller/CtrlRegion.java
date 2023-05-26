@@ -23,6 +23,7 @@ import com.customer.api.entity.Region;
 @RequestMapping("/region")
 public class CtrlRegion {
 
+
 	@GetMapping
 	public ResponseEntity<List<Region>> getRegions(){
 		Region region1 = new Region();

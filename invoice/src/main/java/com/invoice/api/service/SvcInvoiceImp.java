@@ -53,7 +53,7 @@ public class SvcInvoiceImp implements SvcInvoice {
 		 * Implementar el método para generar una factura
 		 */
 		List<Cart> cartItems = repoCart.findByRfcAndStatus(rfc, 1);
-
+		System.out.println("empty? " + cartItems.isEmpty());
 		if (cartItems.isEmpty()) {
 			throw new ApiException(HttpStatus.NOT_FOUND, "the cart has no items");
 		}

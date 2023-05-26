@@ -15,6 +15,7 @@ import com.invoice.api.entity.Cart;
 @Repository
 public interface RepoCart extends JpaRepository<Cart, Integer>{
 
+
 	List<Cart> findByRfcAndStatus(String rfc, Integer status);
 
 	@Modifying
